@@ -22,6 +22,9 @@ router.get('/', async (req, res) => {
 router.get('/:id', (req, res) => {
     const id = req.params.id;
     taskModel.findById(id, (err, entry) => {
+        if (err) {
+            res.status(400).send(err);
+        }
         res.send(entry);
     })
 });
