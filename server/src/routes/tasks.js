@@ -2,7 +2,7 @@
 import express from 'express';
 
 // Import Mongoose model
-const taskModel = require('../models/Task');
+import taskModel from '../models/Task.js';
 
 const app = express();
 const router = express.Router();
@@ -86,4 +86,4 @@ router.delete('/:id', (req, res) => {
     })
 });
 
-module.exports = router;
+export default router;

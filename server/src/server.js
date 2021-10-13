@@ -8,8 +8,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // Import routes
-const users = require('./routes/users');
-const tasks = require('./routes/tasks');
+import users from './routes/users.js';
+import tasks from './routes/tasks.js';
 
 // Express
 const app = express();
@@ -22,7 +22,7 @@ mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
-.then(() => console.log("Connection to MongoDB successful"))
+//.then(() => console.log("Connection to MongoDB successful"))
 .catch((err) => console.error(err));
 
 // Call routes
@@ -32,3 +32,5 @@ app.use('/api/v1/tasks', tasks);
 app.listen(PORT, () => {
     console.log(`Server listening on port: ${PORT}`);
 });
+
+export default app;

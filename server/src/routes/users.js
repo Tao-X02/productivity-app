@@ -2,7 +2,7 @@
 import express from 'express';
 
 // Import Mongoose model
-const userModel = require('../models/User');
+import userModel from '../models/User.js';
 
 const app = express();
 const router = express.Router();
@@ -11,7 +11,7 @@ const router = express.Router();
 router.get('/', async (req, res) => {
     const users = await userModel.find({});
     try {
-        res.send(users);
+        res.json(users).status(200);
     } catch (error) {
         console.error(error);
         res.status(400).send(error);
@@ -22,6 +22,9 @@ router.get('/', async (req, res) => {
 router.get('/:id', (req, res) => {
     const id = req.params.id;
     userModel.findById(id, (err, entry) => {
+        if (err) {
+            res.status(400).send(err);
+        }
         res.send(entry);
     })
 });
@@ -76,4 +79,4 @@ router.delete('/:id', (req, res) => {
     })
 });
 
-module.exports = router;
+export default router;

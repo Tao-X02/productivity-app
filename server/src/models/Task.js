@@ -33,4 +33,4 @@ const taskSchema = new Schema({
 
 // Export
 const Task = mongoose.model("SleepData", taskSchema);
-module.exports = Task;
+export default Task;
