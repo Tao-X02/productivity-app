@@ -1,39 +1,47 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jaldi:wght@400&display=swap');
+
 .App {
-    text-align: center;
+  background-color: #bbd5ed;
+  background-size: cover;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.header {
+  margin: 32vh 0 5vh 0;
+}
+
+.buttons {
+  width: 70%;
+}
+
+.title {
+  font-family: 'Satisfy';
+  font-style: italic;
+  font-size: 70px;
+  font-weight: bold;
+}
+
+.description {
+  font-family: 'Jaldi';
+  font-style: italic;
+  font-size: 30px;
+}
+
+@media (max-width: 576px) {
+  .title {
+    font-family: 'Satisfy';
+    font-style: italic;
+    font-size: 50px;
+    font-weight: bold;
   }
-  
-  .App-logo {
-    height: 40vmin;
-    pointer-events: none;
+
+  .description {
+    font-family: 'Jaldi';
+    font-style: italic;
+    font-size: 20px;
   }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-      animation: App-logo-spin infinite 20s linear;
-    }
-  }
-  
-  .App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-  }
-  
-  .App-link {
-    color: #61dafb;
-  }
-  
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
+}
