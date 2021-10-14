@@ -4,8 +4,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Jaldi:wght@400&display=swap');
 
 .App {
-  background: -webkit-linear-gradient(to bottom right, #ceedf3, #ffe0e0, #cfd7f8);
-  background: linear-gradient(to bottom right, #ceedf3, #ffe0e0, #cfd7f8);
+  background: -webkit-linear-gradient(to bottom right, #ceedf3, #fff7f7, #cfd7f8);
+  background: linear-gradient(to bottom right, #ceedf3, #fff7f7, #cfd7f8);
   background-size: cover;
   overflow: hidden;
   height: 100vh;
