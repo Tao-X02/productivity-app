@@ -1,10 +1,8 @@
 // Import dependencies
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../CSS/Home.css';
 import { Row, Col } from 'react-bootstrap';
 import Button from 'react-bootstrap/button';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
     return (
