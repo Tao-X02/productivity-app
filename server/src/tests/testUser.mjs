@@ -18,7 +18,7 @@ describe("Application", () => {
     });
 });
 
-// Test users REST endpoints
+// Test REST endpoints for users
 describe("Users", () => {
     describe("GET /", () => {
         // Test to get all users
