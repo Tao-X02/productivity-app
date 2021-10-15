@@ -31,10 +31,14 @@ router.get('/:id', (req, res) => {
 
 // POST new user
 router.post('/', async (req, res) => {
-    const userName = req.body.name;
+    const userFirst = req.body.firstName;
+    const userLast = req.body.lastName;
+    const userPassword = req.body.password;
     const userEmail = req.body.email;
     const user = new userModel({
-        name: userName,
+        firstName: userFirst,
+        lastName: userLast,
+        password: userPassword,
         email: userEmail,
         tasks: []
     });
