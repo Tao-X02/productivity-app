@@ -1,8 +1,14 @@
 // Import modules
 import express from 'express';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
 
 // Import Mongoose model
 import userModel from '../models/User.js';
+
+// Import validations
+import validateLogin from '../validation/login.js'
+import validateSignup from '../validation/register.js';
 
 const app = express();
 const router = express.Router();
@@ -81,6 +87,91 @@ router.delete('/:id', (req, res) => {
         console.error(error);
         res.status(400).send(error);
     })
+});
+
+// Register user
+router.post('/register', async (req, res) => {
+    // Validate
+    const { errors, isValid } = validateSignup(req.body);
+    if (!isValid) {
+        return res.status(400).json(errors);
+    }
+
+    // Check if user already exists
+    userModel.findOne({ email: req.body.email }).then(currentUser => {
+        if (currentUser) {
+            return res.status(400).json({ email: "Email already in use" });
+        } else {
+            // Use inputs
+            const userFirst = req.body.firstName;
+            const userLast = req.body.lastName;
+            const userPassword = req.body.password;
+            const userEmail = req.body.email;
+            const user = new userModel({
+                firstName: userFirst,
+                lastName: userLast,
+                password: userPassword,
+                email: userEmail,
+                tasks: []
+            });
+
+            // Hash password
+            bcrypt.genSalt(10, (err, salt) => {
+                bcrypt.hash(user.password, salt, (err, hash) => {
+                if (err) throw err;
+                user.password = hash;
+                user
+                    .save()
+                    .then(user => res.json(user))
+                    .catch(err => console.log(err));
+                });
+            });
+        }
+    });
+});
+
+// Login user
+router.post('/login', async (req, res) => {
+    // Validate
+    const { errors, isValid } = validateLogin(req.body);
+    if (!isValid) {
+        return res.status(400).json(errors);
+    }
+
+    // Check if user already exists
+    userModel.findOne({ email: req.body.email }).then(currentUser => {
+        if (!currentUser) {
+            return res.status(400).json({ email: "Email not found" });
+        } else {
+            // Check password
+            bcrypt.compare(req.body.password, currentUser.password).then(isMatch => {
+                if (isMatch) {
+                    const payload = {
+                        id: currentUser._id,
+                        firstName: currentUser.firstName,
+                        lastName: currentUser.lastName
+                    };
+
+                    // Sign in token
+                    jwt.sign(
+                        payload,
+                        process.env.SECRETORKEY,
+                        {
+                            expiresIn: 31556926 // 1 year in seconds
+                        },
+                        (err, token) => {
+                            res.json({
+                                success: true,
+                                token: "Bearer " + token
+                            });
+                        }
+                    );
+                } else {
+                    return res.status(400).json({ password: "Password incorrect" });
+                }
+            });
+        }
+    });
 });
 
 export default router;

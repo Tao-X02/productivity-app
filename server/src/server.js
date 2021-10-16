@@ -4,12 +4,15 @@ import cors from "cors";
 import fs from 'fs';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import passport from 'passport';
 
 dotenv.config();
 
 // Import routes
 import users from './routes/users.js';
 import tasks from './routes/tasks.js';
+
+// import passportFunc from './passport.js';
 
 // Express
 const app = express();
@@ -24,6 +27,11 @@ mongoose.connect(process.env.MONGO_URI, {
 })
 //.then(() => console.log("Connection to MongoDB successful"))
 .catch((err) => console.error(err));
+
+// Passport middleware
+app.use(passport.initialize());
+
+require("./passport")(passport);
 
 // Call routes
 app.use('/api/v1/users', users);
