@@ -1,58 +1,116 @@
 // Import dependencies
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { Component } from "react";
 import Button from 'react-bootstrap/button';
 import { Col } from 'react-bootstrap';
-import { useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { LoginUser } from "../../actions/authActions";
+import classnames from "classnames";
 
-function Login() {
-    let history = useHistory();
+class Login extends Component {
+    constructor() {
+        super();
 
-    // Intialize state variables
-    const [isLoading, setLoading] = useState(false);
-    const [user, setUser] = useState({
-        email: "",
-        password: ""
-    });
+        // Initialize state variables
+        this.state = {
+            email: "",
+            password: "",
+            errors: {}
+        };
+    }
 
-    // Handle submit
-    const handleClick = () => {
-        history.push("/Main");
-        if (user.password && user.email) {
-            history.push("/Main");
+    // Redirect to main page if logged in
+    componentDidMount() {
+        if (this.props.auth.isAuthenticated) {
+          this.props.history.push("/main");
         }
     }
 
-    // Handle inputs
-    const handleChange = (e) => {
-        setUser ({
-            ...user,
-            [e.target.name]: e.target.value
-        });
+    componentWillReceiveProps(nextProps) {
+        // Redirect to main page if logged in
+        if (nextProps.auth.isAuthenticated) {
+            this.props.history.push("/main");
+        }
+        
+        if (nextProps.errors) {
+            this.setState({
+                errors: nextProps.errors
+            });
+        }
     }
 
-    return (
-        <div className="outer">
-            <form className="inner">
-                <h3>Log In</h3>
+    // Functions
+    handleChange = (e) => {
+        this.setState({ [e.target.name]: e.target.value });
+    };
 
-                <div className="form-group">
-                    <label className="custom-control-label">Email</label>
-                    <input type="email" className="form-control" placeholder="Enter email" name="email" value={user.email} onChange={handleChange} />
-                </div>
+    handleClick = (e) => {
+        e.preventDefault();
 
-                <div className="form-group">
-                    <label className="custom-control-label">Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password" name="password" value={user.password} onChange={handleChange} />
-                </div>
+        const userData = {
+            email: this.state.email,
+            password: this.state.password
+        };
+      
+        this.props.LoginUser(userData);
+    }
 
-                <Button as={Col} variant="success" size='xs' xs={{ span: 12 }} className="form-button" onClick={!isLoading ? handleClick: null} >Log In</Button>
-                <p className="forgot-password text-right">
-                    Forgot your password? <a href="/login">Click here</a>
-                </p>
-            </form>
-        </div>
-    );
+    render () {
+        const { errors } = this.state;
+
+        return (
+            <div className="outer">
+                <form className="inner">
+                    <h3>Log In</h3>
+    
+                    <div className="form-group">
+                        <label className="custom-control-label">Email</label>
+                        <input
+                            type="email"
+                            className="form-control"
+                            placeholder="Enter email"
+                            name="email"
+                            value={this.state.email}
+                            error={errors.email}
+                            onChange={this.handleChange}
+                        />
+                    </div>
+    
+                    <div className="form-group">
+                        <label className="custom-control-label">Password</label>
+                        <input
+                            type="password"
+                            className="form-control"
+                            placeholder="Enter password"
+                            name="password"
+                            value={this.state.password}
+                            error={errors.password}
+                            onChange={this.handleChange}
+                        />
+                    </div>
+    
+                    <Button as={Col} variant="success" size='xs' xs={{ span: 12 }} className="form-button" onClick={this.handleClick} >Log In</Button>
+                    <p className="forgot-password text-right">
+                        Forgot your password? <a href="/login">Click here</a>
+                    </p>
+                </form>
+            </div>
+        );
+    }
 }
 
-export default Login;
+Login.propTypes = {
+    LoginUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+};
+  
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+});
+
+export default connect(
+    mapStateToProps,
+    { LoginUser }
+)(Login);
