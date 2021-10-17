@@ -4,8 +4,8 @@ body {
     font-weight: 400;
     font-family: sans-serif;
     background: #acb6e5;
-    background: -webkit-linear-gradient(to right, #fbc7d4, #acb6e5, #86fde8);
-    background: linear-gradient(to right, #fbc7d4, #acb6e5, #86fde8);
+    background: -webkit-linear-gradient(to top right, #ffe2e9, #c7cce2, #befff3);
+    background: linear-gradient(to top right, #ffe2e9, #c7cce2, #befff3);
 }
   
 body, html, #root, .outer {

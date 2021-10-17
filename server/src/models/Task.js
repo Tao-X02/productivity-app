@@ -17,17 +17,18 @@ const taskSchema = new Schema({
         required: true
     },
     date: {
-        type: [Date],
+        type: Date,
         default: Date.now,
         required: true
     },
     duration: {
         type: Number,
+        default: 0,
         required: true
     },
-    completed: {
-        type: Boolean,
-        default: false,
+    status: {
+        type: String,
+        default: "Not started",
         required: true
     }
 });

@@ -5,7 +5,6 @@ import { Col } from 'react-bootstrap';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { LoginUser } from "../../actions/authActions";
-import classnames from "classnames";
 
 class Login extends Component {
     constructor() {

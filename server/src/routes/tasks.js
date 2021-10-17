@@ -29,6 +29,37 @@ router.get('/:id', (req, res) => {
     })
 });
 
+const current = new Date();
+current.setHours(0,0,0,0);
+
+// Get task by user id
+router.get('/users/:id', (req, res) => {
+    const id = req.params.id;
+    taskModel.find({ userId: id, date: { $gte: current } }, (err, entry) => {
+        if (err) {
+            res.status(400).send(err);
+        }
+        
+        if (current.getDate()) {
+            res.send(entry);
+        }
+    })
+});
+
+// Get completed tasks
+router.get('/users/:id/completed', (req, res) => {
+    const id = req.params.id;
+    taskModel.find({  userId: id, status: "Completed" }, (err, entry) => {
+        if (err) {
+            res.status(400).send(err);
+        }
+        
+        if (current.getDate()) {
+            res.send(entry);
+        }
+    })
+});
+
 // POST new task
 router.post('/', async (req, res) => {
     // Get request body
@@ -36,8 +67,7 @@ router.post('/', async (req, res) => {
     const titleInput = req.body.title;
     const descriptionInput = req.body.description;
     const dateInput = req.body.date;
-    const durationInput = req.body.duration;
-    const completedInput = req.body.completed;
+    const statusInput = req.body.status;
     
     // Create new model
     const task = new taskModel({
@@ -45,8 +75,7 @@ router.post('/', async (req, res) => {
         title: titleInput,
         description: descriptionInput,
         date: dateInput,
-        duration: durationInput,
-        completed: completedInput
+        status: statusInput
     });
     try {
         await task.save();
