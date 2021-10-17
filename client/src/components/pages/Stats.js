@@ -3,10 +3,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { LogoutUser } from "../../actions/authActions";
-import { useHistory, Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Container, NavDropdown, Nav, Navbar } from 'react-bootstrap';
 
-function Main(props) {
+function Stats (props) {
     const { user } = props.auth;
     const history = useHistory();
 
@@ -24,7 +24,7 @@ function Main(props) {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                    <Nav.Link href="#Dashboard">Dashboard</Nav.Link>
+                    <Nav.Link as={Link} to="/main">Dashboard</Nav.Link>
                     <Nav.Link as={Link} to="/stats">Stats</Nav.Link>
                     <NavDropdown title="Settings" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -37,12 +37,12 @@ function Main(props) {
                 </Navbar.Collapse>
             </Container>
             </Navbar>
-            <h1>Welcome, {user.firstName}!</h1>
+            <h1>Statistics page</h1>
         </div>
     );
 }
 
-Main.propTypes = {
+Stats.propTypes = {
     logoutUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired
 };
@@ -54,4 +54,4 @@ const mapStateToProps = (state) => ({
 export default connect(
     mapStateToProps,
     {LogoutUser}
-)(Main);
+)(Stats);

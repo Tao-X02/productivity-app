@@ -74,6 +74,10 @@ class Login extends Component {
                             error={errors.email}
                             onChange={this.handleChange}
                         />
+                        <span className="text-danger">
+                            {errors.email}
+                            {errors.emailnotfound}
+                        </span>
                     </div>
     
                     <div className="form-group">
@@ -87,6 +91,10 @@ class Login extends Component {
                             error={errors.password}
                             onChange={this.handleChange}
                         />
+                        <span className="text-danger">
+                            {errors.password}
+                            {errors.passwordincorrect}
+                        </span>
                     </div>
     
                     <Button as={Col} variant="success" size='xs' xs={{ span: 12 }} className="form-button" onClick={this.handleClick} >Log In</Button>

@@ -1,10 +1,16 @@
 // Import dependencies
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
 import Button from 'react-bootstrap/button';
 
 function App() {
+    // Redirect to main page if logged in
+    const history = useHistory();
+    if (localStorage.jwtToken) {
+      history.push("/main");
+    }
+
     return (
       <div className="App">
         <header className="header">

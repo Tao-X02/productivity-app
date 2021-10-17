@@ -13,6 +13,9 @@ import Home from "./components/pages/Home";
 import Login from "./components/pages/Login";
 import Signup from "./components/pages/Signup";
 import Main from "./components/pages/Main";
+import Stats from './components/pages/Stats';
+
+import PrivateRoute from './PrivateRoute';
 
 // Import Bootstrap and CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -40,11 +43,12 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        <Switch>
           <Route exact path="/"><Home /></Route>
           <Route path ="/login" component = {Login} />
           <Route path ="/signup" component = {Signup} />
-          <Route path ="/main" component = {Main} />
+          <Route path ="/stats" component = {Stats} />
+        <Switch>
+          <PrivateRoute exact path="/main" component={Main} />
         </Switch>
       </Router>
     </Provider>

@@ -6,7 +6,6 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { SignupUser } from "../../actions/authActions";
-import classnames from "classnames";
 
 class Signup extends Component {
     constructor() {
@@ -76,6 +75,9 @@ class Signup extends Component {
                             error={errors.firstName}
                             onChange={this.handleChange}
                         />
+                        <span className="text-danger">
+                            {errors.firstName}
+                        </span>
                     </div>
     
                     <div className="form-group">
@@ -89,6 +91,9 @@ class Signup extends Component {
                             error={errors.lastName}
                             onChange={this.handleChange}
                         />
+                        <span className="text-danger">
+                            {errors.lastName}
+                        </span>
                     </div>
     
                     <div className="form-group">
@@ -102,6 +107,9 @@ class Signup extends Component {
                             error={errors.email}
                             onChange={this.handleChange}
                         />
+                        <span className="text-danger">
+                            {errors.email}
+                        </span>
                     </div>
     
                     <div className="form-group">
@@ -115,6 +123,9 @@ class Signup extends Component {
                             error={errors.password}
                             onChange={this.handleChange}
                         />
+                        <span className="text-danger">
+                            {errors.password}
+                        </span>
                     </div>
     
                     <div className="form-group">
@@ -128,6 +139,9 @@ class Signup extends Component {
                             error={errors.password2}
                             onChange={this.handleChange}
                         />
+                        <span className="text-danger">
+                            {errors.password2}
+                        </span>
                     </div>
     
                     <Button 
