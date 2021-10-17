@@ -46,6 +46,20 @@ router.get('/users/:id', (req, res) => {
     })
 });
 
+// Get uncompleted tasks
+router.get('/users/:id/uncomplated', (req, res) => {
+    const id = req.params.id;
+    taskModel.find({ userId: id, status: { $ne: "Completed" } }, (err, entry) => {
+        if (err) {
+            res.status(400).send(err);
+        }
+        
+        if (current.getDate()) {
+            res.send(entry);
+        }
+    })
+});
+
 // Get completed tasks
 router.get('/users/:id/completed', (req, res) => {
     const id = req.params.id;
