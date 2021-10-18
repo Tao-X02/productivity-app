@@ -1,6 +1,6 @@
 # Productivity-App
 
-Built a full-stack productivity app that allows users to sign up, log in, and track their daily tasks, with the ability to add, delete, edit, and track their progress with a stopwatch timer. 
+Built a full-stack productivity app that allows users to sign up, log in, and track their daily activities, with the ability to add, delete, edit, and track their progress with a stopwatch timer. 
 
 Developed with the MERN stack:
   - **MongoDB + Mongoose**
