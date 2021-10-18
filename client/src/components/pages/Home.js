@@ -14,7 +14,7 @@ function App() {
     return (
       <div className="App">
         <header className="header">
-          <h1 className="text-center title">Product Name</h1>
+          <h1 className="text-center title">Productivity App</h1>
           <h4 className="text-center description">Make your day more productive!</h4>
         </header>
         <Row className="d-grid gap-3">

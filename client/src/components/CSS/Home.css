@@ -13,7 +13,7 @@
 }
 
 .header {
-  margin: 32vh 0 5vh 0;
+  margin: 30vh 0 5vh 0;
 }
 
 .buttons {
@@ -25,6 +25,7 @@
   font-style: italic;
   font-size: 70px;
   font-weight: bold;
+  margin-bottom: 3vh;
 }
 
 .description {
