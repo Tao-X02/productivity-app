@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Jaldi:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,700;1,400&display=swap');
 
 .App {
   background: -webkit-linear-gradient(to bottom right, #ceedf3, #fff7f7, #cfd7f8);
@@ -30,6 +31,18 @@
   font-family: 'Jaldi';
   font-style: italic;
   font-size: 30px;
+}
+
+.welcome {
+  font-family: 'Jaldi';
+  font-style: italic;
+  font-size: 35px;
+  font-weight: 700;
+}
+
+.date {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 45px;
 }
 
 @media (max-width: 576px) {

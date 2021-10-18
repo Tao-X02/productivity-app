@@ -203,8 +203,8 @@ function Main(props) {
             </Container>
             </Navbar>
             <div style={{ margin: '3vh 4vw 5vh 4vw'}}>
-                <h3>Welcome, {user.firstName}!</h3>
-                <h3>{currentDate}</h3>
+                <h3 className="welcome">Welcome, {user.firstName}!</h3>
+                <h3 className="date">{currentDate}</h3>
                 <h3>What do you want to accomplish today?</h3>
                 <Button onClick={handleShowAdd} variant="primary" size='xs' style={{ margin: '1vh 0 3vh 0' }}>Add a New Task</Button>
 
