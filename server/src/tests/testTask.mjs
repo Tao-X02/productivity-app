@@ -24,21 +24,6 @@ describe("Tasks", () => {
                 });
         });
 
-        // Test to get a task by id
-        it("should get a task by id", (done) => {
-            const id = '616770ddad114eb9da4e2da5';
-            chai.request(app)
-                .get(`/api/v1/tasks/${id}`)
-                .end((err, res) => {
-                    if (err) {
-                        done(new Error("Error in get by id"));
-                    }
-                    res.should.have.status(200);
-                    res.body.should.be.a('object');
-                    done();
-                });
-        });
-
         // Test to get a task by wrong id
         it("should return status 400 (error)", (done) => {
             const id = '0';
