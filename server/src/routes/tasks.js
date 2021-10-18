@@ -89,7 +89,8 @@ router.post('/', async (req, res) => {
         title: titleInput,
         description: descriptionInput,
         date: dateInput,
-        status: statusInput
+        status: statusInput,
+        duration: 0
     });
     try {
         await task.save();
@@ -107,9 +108,10 @@ router.patch('/:id', async (req, res) => {
         
         let query = {$set: {}};
         for (let key in req.body) {
-            if (task[key] && task[key] != req.body[key]) {
-                query.$set[key] = req.body[key];
-            }
+            query.$set[key] = req.body[key];
+            // if (task[key] && task[key] != req.body[key]) {
+            //     query.$set[key] = req.body[key];
+            // }
         }
         const updatedTask = await taskModel.findOneAndUpdate({_id: req.params.id}, query);
 		res.send(updatedTask);

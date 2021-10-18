@@ -21,6 +21,7 @@ import PrivateRoute from './PrivateRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './components/CSS/Home.css';
 import './components/CSS/Form.css';
+import './components/CSS/Timer.css';
 
 if (localStorage.jwtToken) {
     const token = localStorage.jwtToken;
